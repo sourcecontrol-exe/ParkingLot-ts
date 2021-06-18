@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "tsconfig": "^7.0.0",
+    "typescript": "^4.3.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
