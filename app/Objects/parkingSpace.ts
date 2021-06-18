@@ -1,28 +1,40 @@
-class Car {
-	C_number: string;
-	C_color: string;
-	C_slot: number;
-	constructor(C_color: string, C_number: string, C_slot: number) {
-		this.C_color = C_color;
-		this.C_number = C_number;
-		this.C_slot = C_slot
+enum VehicalType{
+	"TwoWeeler",
+	"LMV",
+	"SMV"
+}
+
+class Vehical {
+	V_number: string;
+	V_color: string;
+	V_slot: number;
+	V_driver : string;
+	V_contact : number;
+	V_type: VehicalType;
+	constructor(VehicalColor: string, VehicalNumber: string, AllottedSlot: number , Owner : string, ContactDetails: number, Type: VehicalType) {
+		this.V_color = VehicalColor;
+		this.V_number = VehicalNumber;
+		this.V_slot = AllottedSlot;
+		this.V_driver = Owner;
+		this.V_contact = ContactDetails;
+		this.V_type = Type;
 	}
 
-	isEqual(carA: Car, CarB: Car) {
-		return ((carA.C_number.toLowerCase() === CarB.C_number.toLowerCase()) &&
-			carA.C_color.toLowerCase() == CarB.C_color.toLowerCase())
+	isEqual(carA: Vehical, VehicalB: Vehical) {
+		return ((carA.V_number.toLowerCase() === VehicalB.V_number.toLowerCase()) &&
+			carA.V_color.toLowerCase() == VehicalB.V_color.toLowerCase())
 	}
 
 }
 
 class ParkingSpace {
-	MaxParkingSlots: number;
-	ParkingSlots: any;
-	slotsOccupied: number
+	MaxFloor: number;
+	MaxSlotsPerNumber : number;
+	SlotIndex : []  
 	constructor() {
 		this.MaxParkingSlots = 0;
 		this.slotsOccupied = 0;
-		this.ParkingSlots = new Set()
+		this.ParkingSlots = [];
 	}
 
 	createParkingLot(input: string) {
@@ -31,7 +43,7 @@ class ParkingSpace {
 		else throw new Error(" Please enter a valid Space for the parking Lot")
 	}
 
-	registerCarEntry(input: string) {
+	registerVehicalEntry(input: string) {
 		if (this.MaxParkingSlots <= 0) {
 			throw new Error("Please Create Space for Parking lot")
 		}
@@ -40,12 +52,12 @@ class ParkingSpace {
 		let C_number = input.split(" ")[1];
 		let C_Slot = this.ParkingSlots.size()
 		if(this.slotsOccupied < this.MaxParkingSlots){
-			let car = new Car(C_color,C_number,C_slot);
+			let car = new Vehical(C_color,C_number,C_slot);
 		}
 
 	}
 
-	leaveCarByNumber(input: string) {
+	leaveVehicalByNumber(input: string) {
 
 	}
 
@@ -53,9 +65,17 @@ class ParkingSpace {
 
 	}
 
-
 	findNearestSlot() {
 
 	}
 
 }
+/*
+	multi story building
+	0
+	1
+	2
+	3
+	4
+	5
+*/
