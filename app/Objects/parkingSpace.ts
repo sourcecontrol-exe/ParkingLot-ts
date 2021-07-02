@@ -1,5 +1,3 @@
-import { parse } from "ts-node";
-import { isThisTypeNode } from "typescript";
 
 class Vehical {
 	V_number: string;
