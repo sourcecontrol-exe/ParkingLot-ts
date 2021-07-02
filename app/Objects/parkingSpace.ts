@@ -40,35 +40,14 @@ class ParkingSpace {
 		if (MaxFloor <= 0 || MaxSlotsPerFloor <= 0) {
 			throw new Error("Please enter value greater than zero");
 		}
-		for (let i = 0; i < MaxFloor; i++) {
-			let temp = []
-			for (let j = 0; j < MaxSlotsPerFloor; j++{
-				temp.push(-1);
-			}
-			this.ParkingSpace.push(temp);
-		}
+		this.MaxFloor = MaxFloor;
+		this.MaxSlotsPerFloor = MaxSlotsPerFloor;
+		this.ParkingSpace = new Array(this.MaxFloor).fill(0).map(floor => new Array(this.MaxSlotsPerFloor).fill(null));
+		return this.ParkingSpace;
 	}
 
 	registerVehicalEntry(input: string) {
-		if (this.MaxFloor <= 0 || this.MaxSlotsPerFloor <= 0) {
-			throw new Error("Please Create Space for Parking lot")
-		}
-		let [_, VehicalNumber, VehicalColor, Owner, ContactDetails, Type] = input.split(' ');
-
-		if (VehicalNumber && VehicalColor && Owner && ContactDetails && Type) {
-			let slot = await this._findNearestSlot();
-			if (slot.length !== 0) {
-				let [i, j] = slot;
-				let key = i + "," + j;
-				let vehical = new Vehical(VehicalColor, VehicalNumber, key, Owner, ContactDetails, Type);
-				this.ParkingSpace[i][j] = vehical;
-				this.ParkingMap.set(VehicalNumber, key);
-				return vehical;
-			}
-			else
-				throw new Error("Parking Space is full")
-
-		}
+		
 	}
 
 	getVehicalByNumber(input: string) {
@@ -88,27 +67,21 @@ class ParkingSpace {
 		}
 	}
 
-	async _findNearestSlot() {
+	_findNearestSlot() {
+		let [k, l] = [-1, -1]
 		for (let i = 0; i < this.ParkingSpace.length; i++) {
 			for (let j = 0; j < this.ParkingSpace[i].length; j++) {
 				if (this.ParkingSpace[i][j] !== -1)
-					return [i, j];
+					[k, l] = [i, j];
+				return [k, l]
 			}
 		};
-
-		return [];
 	}
 
 }
+let park = new ParkingSpace();
+console.log(park)
+//console.log(park.createParkingLot("park 12 54"));
 
-let garage = new ParkingSpace();
-console.log(garage.createParkingLot("apce 21 23"));
-/*
-	multi story building
-	0
-	1
-	2
-	3
-	4
-	5
-*/
+
+
